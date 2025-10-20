@@ -52,6 +52,26 @@ class Usuario:
             livro.exibir_info()
 
 
+class Biblioteca:
+    def __init__(self, nome):
+        self.livros = []
+        self.nome = nome
+
+    def adicionar_livro(self, livro):
+        self.livros.append(livro)  # adiciona um livro na biblioteca
+
+    def listar_livros_disponiveis(self):
+        for livro in self.livros:
+            if livro.disponivel:  # verifica se o livro esta disponivel
+                livro.exibir_info()
+
+    def buscar_livro(self, titulo):
+        for livro in self.livros:
+            if livro.titulo == titulo:  # verifica se o titulo do livro bate
+                return livro
+        return None
+
+
 livro = Livro("1984", "George Orwell")
 livro.exibir_info()
 livro.emprestar()
@@ -60,4 +80,8 @@ livro.devolver()
 
 usuario = Usuario("Alice")
 usuario.emprestar_livro(livro)
-usuario.listar_livros()
+
+biblioteca = Biblioteca("Biblioteca Central")
+biblioteca.adicionar_livro(livro)
+biblioteca.listar_livros_disponiveis()
+
